@@ -20,15 +20,11 @@
 #define PIN_ANIMATED_AVAILABLE 1
 #import <PINRemoteImage/PINCachedAnimatedImage.h>
 #import <PINRemoteImage/PINAlternateRepresentationProvider.h>
+#import <PINRemoteImage/NSData+ImageDetectors.h>
 #else
 #define PIN_ANIMATED_AVAILABLE 0
 #endif
 
-#if __has_include(<webp/decode.h>)
-#define PIN_WEBP_AVAILABLE  1
-#else
-#define PIN_WEBP_AVAILABLE  0
-#endif
 
 #import <PINRemoteImage/PINRemoteImageManager.h>
 #import <PINRemoteImage/NSData+ImageDetectors.h>
@@ -62,11 +58,9 @@ static inline PINRemoteImageManagerPriority PINRemoteImageManagerPriorityWithASI
     if ([data pin_isGIF]) {
         return YES;
     }
-#if PIN_WEBP_AVAILABLE
     else if ([data pin_isAnimatedWebP]) {
         return YES;
     }
-#endif
   return NO;
 }
 
@@ -352,12 +346,10 @@ static dispatch_once_t shared_init_predicate;
   if ([data pin_isAnimatedGIF]) {
     return data;
   }
-#if PIN_WEBP_AVAILABLE
   else if ([data pin_isAnimatedWebP]) {
       return data;
   }
-#endif
-    
+
 #endif
   return nil;
 }

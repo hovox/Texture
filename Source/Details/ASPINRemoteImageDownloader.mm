@@ -18,6 +18,7 @@
 
 #if __has_include (<PINRemoteImage/PINGIFAnimatedImage.h>)
 #define PIN_ANIMATED_AVAILABLE 1
+#define PIN_WEBP 1
 #import <PINRemoteImage/PINCachedAnimatedImage.h>
 #import <PINRemoteImage/PINAlternateRepresentationProvider.h>
 #import <PINRemoteImage/NSData+ImageDetectors.h>
